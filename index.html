@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>N.Y. Excelsior | Link-in-bio</title>
+    <meta
+      name="description"
+      content="Conecta con N.Y. Excelsior en Instagram, Threads, Facebook, TikTok, WhatsApp y Google Maps."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg0: #100e0a;
+        --bg1: #1c1612;
+        --text: #f7efe6;
+        --muted: rgba(247, 239, 230, 0.72);
+        --panel: rgba(255, 255, 255, 0.08);
+        --panel-strong: rgba(255, 255, 255, 0.14);
+        --border: rgba(255, 255, 255, 0.16);
+        --accent: #e1b16f;
+        --accent-2: #c67747;
+        --shadow: 0 35px 90px rgba(0, 0, 0, 0.38);
+        --focus: rgba(225, 177, 111, 0.32);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Inter, Arial, sans-serif;
+        color: var(--text);
+        display: grid;
+        place-items: center;
+        padding: 20px;
+        background-color: var(--bg0);
+        background-image:
+          radial-gradient(circle at 15% 10%, rgba(225, 177, 111, 0.16), transparent 26%),
+          radial-gradient(circle at 80% 20%, rgba(198, 118, 71, 0.16), transparent 24%),
+          radial-gradient(circle at 50% 120%, rgba(255, 255, 255, 0.06), transparent 38%),
+          url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=80");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .wrap {
+        width: min(560px, 100%);
+      }
+
+      .shell {
+        position: relative;
+        border-radius: 32px;
+        overflow: hidden;
+        background: linear-gradient(180deg, rgba(18, 14, 11, 0.96), rgba(18, 14, 11, 0.9));
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(20px);
+      }
+
+      .hero {
+        position: relative;
+        padding: 28px 24px 20px;
+        display: grid;
+        gap: 14px;
+        text-align: center;
+        background: linear-gradient(180deg, rgba(19, 15, 12, 0.88), rgba(24, 18, 13, 0.75)),
+          url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.36));
+        pointer-events: none;
+      }
+
+      .hero > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .logo {
+        width: 92px;
+        height: 92px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        font-size: 32px;
+        color: #1b1107;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.28),
+          0 18px 40px rgba(225, 177, 111, 0.18);
+      }
+
+      .brand {
+        margin: 0;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        line-height: 1.05;
+        letter-spacing: 0.05em;
+      }
+
+      .tag {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.98rem;
+        line-height: 1.6;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .chip {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(247, 239, 230, 0.86);
+        border-radius: 999px;
+        padding: 8px 12px;
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .content {
+        position: relative;
+        padding: 18px 22px 24px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .link {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        text-decoration: none;
+        padding: 15px 16px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.05);
+        transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+      }
+
+      .link:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(225, 177, 111, 0.45);
+      }
+
+      .link:focus-visible {
+        box-shadow: 0 0 0 4px var(--focus);
+        border-color: rgba(225, 177, 111, 0.55);
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .ico {
+        width: 46px;
+        height: 46px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .ico svg {
+        width: 22px;
+        height: 22px;
+        fill: var(--accent);
+      }
+
+      .meta {
+        min-width: 0;
+        text-align: left;
+      }
+
+      .name {
+        display: block;
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.2;
+      }
+
+      .desc {
+        display: block;
+        color: rgba(247, 239, 230, 0.74);
+        font-size: 0.84rem;
+        margin-top: 2px;
+        max-width: 320px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .go {
+        color: var(--accent);
+        font-weight: 900;
+        font-size: 1.15rem;
+      }
+
+      .map-card {
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.05);
+        margin-top: 12px;
+      }
+
+      .map-card iframe {
+        width: 100%;
+        min-height: 270px;
+        border: 0;
+        display: block;
+      }
+
+      .menu-preview {
+        margin-top: 16px;
+        padding: 16px 18px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .menu-preview h2 {
+        margin: 0 0 8px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        letter-spacing: 0.04em;
+      }
+
+      .menu-preview p {
+        margin: 0;
+        color: rgba(247, 239, 230, 0.74);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      footer {
+        padding: 16px 20px 24px;
+        text-align: center;
+        color: rgba(247, 239, 230, 0.66);
+        font-size: 0.86rem;
+      }
+
+      .note {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+        padding: 10px 12px;
+        border-radius: 999px;
+      }
+
+      @media (max-width: 420px) {
+        body {
+          padding: 14px;
+        }
+
+        .hero {
+          padding: 22px 18px 16px;
+        }
+
+        .content {
+          padding: 14px 16px 18px;
+        }
+
+        .link {
+          padding: 13px 12px;
+          border-radius: 16px;
+        }
+
+        .desc {
+          max-width: 220px;
+        }
+
+        .ico {
+          width: 42px;
+          height: 42px;
+          border-radius: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div class="shell" role="main">
+        <header class="hero">
+          <div class="logo" aria-hidden="true">NY</div>
+          <h1 class="brand">N.Y. Excelsior</h1>
+          <p class="tag">Sabor, ambiente y momentos para compartir. Encuentra todo aquí.</p>
+          <div class="chips" aria-label="Categorías">
+            <span class="chip">Restaurante</span>
+            <span class="chip">Experiencia</span>
+            <span class="chip">Reservas</span>
+          </div>
+        </header>
+
+        <div class="content">
+          <nav class="grid" aria-label="Enlaces principales">
+            <a
+              class="link"
+              href="https://www.instagram.com/n.y_excelsior/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir Instagram"
+            >
+              <span class="left">
+                <span class="ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2C4.238 2 2 4.238 2 7v10c0 2.762 2.238 5 5 5h10c2.762 0 5-2.238 5-5V7c0-2.762-2.238-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zm-5 3.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9zm0 2a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm5.5-2.75a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5z"/></svg>
+                </span>
+                <span class="meta">
+                  <span class="name">Instagram</span>
+                  <span class="desc">Síguenos para ver novedades</span>
+                </span>
+              </span>
+              <span class="go" aria-hidden="true">→</span>
+            </a>
+
+            <a
+              class="link"
+              href="https://www.threads.com/@n.y_excelsior"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir Threads"
+            >
+              <span class="left">
+                <span class="ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7v11l4-3 3.5 2.5 4.5-4.5V9a7 7 0 0 0-7-7zm0 2a5 5 0 0 1 5 5v5.586l-3 3V16.5L9 13.5V9a5 5 0 0 1 5-5z"/></svg>
+                </span>
+                <span class="meta">
+                  <span class="name">Threads</span>
+                  <span class="desc">Contenido breve y directo</span>
+                </span>
+              </span>
+              <span class="go" aria-hidden="true">→</span>
+            </a>
+
+            <a
+              class="link"
+              href="https://www.facebook.com/profile.php?id=61578719792773"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir Facebook"
+            >
+              <span class="left">
+                <span class="ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2h-3.5c-2.761 0-5 2.239-5 5v3H2v4h3v8h4v-8h3l1-4h-4V7c0-1.103.897-2 2-2h2V2z"/></svg>
+                </span>
+                <span class="meta">
+                  <span class="name">Facebook</span>
+                  <span class="desc">Comunidad y actualizaciones</span>
+                </span>
+              </span>
+              <span class="go" aria-hidden="true">→</span>
+            </a>
+
+            <a
+              class="link"
+              href="https://www.tiktok.com/@n.y_excelsior"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir TikTok"
+            >
+              <span class="left">
+                <span class="ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 3h-2v7.83c0 1.243-.65 2.36-1.67 3.01-1.01.63-2.31.66-3.36.08-.98-.55-1.57-1.57-1.57-2.71V6h-2v9.5c0 1.67.79 3.24 2.14 4.18 1.4.96 3.17 1.04 4.64.21 1.47-.82 2.36-2.43 2.36-4.17V9h2V3z"/></svg>
+                </span>
+                <span class="meta">
+                  <span class="name">TikTok</span>
+                  <span class="desc">Videos y momentos del día</span>
+                </span>
+              </span>
+              <span class="go" aria-hidden="true">→</span>
+            </a>
+
+            <a
+              class="link"
+              href="https://wa.me/573243522233"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir WhatsApp"
+            >
+              <span class="left">
+                <span class="ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-2 11.5c-.2.6-1.2 1.2-1.6 1.3-.4.1-.8.2-1.3-.1s-1.1-.5-1.6-.9c-.4-.4-.9-.9-1.3-1.4-.4-.4-.6-.8-.8-1.2-.2-.4-.1-.8.1-1.1.2-.3.4-.4.7-.4.2 0 .4 0 .6.1.2.1.5.3.7.6.2.2.4.5.5.7.1.3.2.7.3 1 .1.3 0 .5-.1.7-.1.2-.2.4-.3.6-.2.1-.4.2-.7.1s-.5-.2-.7-.4c-.2-.1-.4-.3-.5-.5-.1-.1-.2-.2-.2-.4 0-.2.1-.4.3-.6.2-.3.4-.5.6-.7.3-.2.7-.2 1-.1.3.1.6.3.8.5.2.2.4.5.5.8.1.3.1.7.1 1 0 .2 0 .4-.1.6z"/></svg>
+                </span>
+                <span class="meta">
+                  <span class="name">WhatsApp</span>
+                  <span class="desc">Escríbenos para reservar</span>
+                </span>
+              </span>
+              <span class="go" aria-hidden="true">→</span>
+            </a>
+
+            <a
+              class="link"
+              href="https://maps.app.goo.gl/HW6TsJbYU4Rsm8Fw7"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir ubicación en Google Maps"
+            >
+              <span class="left">
+                <span class="ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.686 2 6 4.686 6 8c0 5.25 5.2 11.5 5.5 11.87.14.15.33.23.5.23s.36-.08.5-.23C12.8 19.5 18 13.25 18 8c0-3.314-2.686-6-6-6zm0 16.2C10.4 16.72 8 12.64 8 8a4 4 0 0 1 8 0c0 4.64-2.4 8.72-4 10.2z"/><circle cx="12" cy="8" r="2.25"/></svg>
+                </span>
+                <span class="meta">
+                  <span class="name">Ubicación</span>
+                  <span class="desc">Encuentra el restaurante</span>
+                </span>
+              </span>
+              <span class="go" aria-hidden="true">→</span>
+            </a>
+
+            <a
+              class="link"
+              href="#menu"
+              aria-label="Ver menú"
+            >
+              <span class="left">
+                <span class="ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h10v2H4v-2z"/></svg>
+                </span>
+                <span class="meta">
+                  <span class="name">Menú</span>
+                  <span class="desc">Próximamente en la landing</span>
+                </span>
+              </span>
+              <span class="go" aria-hidden="true">→</span>
+            </a>
+          </nav>
+
+          <div class="map-card" aria-label="Ubicación en Google Maps">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.122419809321!2d-75.5643478241233!3d6.247594826306257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e44290067f72347%3A0x9dab586b5594d5f1!2sRestaurante%20NY%20Excelsior!5e0!3m2!1ses!2sco!4v1784007611736!5m2!1ses!2sco"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          </div>
+
+          <div id="menu" class="menu-preview">
+            <h2>Menú del restaurante</h2>
+            <p>
+              Esta es la sección que conectará con la landing page del menú. Cuando esté lista,
+              aquí podrás mostrar platos destacados y promociones especiales.
+            </p>
+          </div>
+        </div>
+
+        <footer>
+          <span class="note">⚡ Diseño creado por @pixell</span>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
